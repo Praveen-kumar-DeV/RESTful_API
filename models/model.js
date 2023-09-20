@@ -9,19 +9,18 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  semester: {
-  type: Number,
-  default:0,
+  semster: {
+    type: Number,
+    default: 0,
   },
-  branch :{
-  type : String,
-  required: true,
+  branch: {
+    type: String,
+    required: true,
   },
-   regNumber :{
-  type : Number,
-  required: true,
+  regNumber: {
+    type: Number,
+    required: true,
   },
-});
 });
 
 const User = mongoose.model("User", UserSchema);
