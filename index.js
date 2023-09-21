@@ -26,7 +26,20 @@ app.get("/users", async (req, res) => {
     res.status(500).send(error);
   }
 });
+app.get("/attendance", async (req, res) => {
+  let { regNumber, semster } = req.query;
+  const usersData = await userModel.findOneAndUpdate(
+    { regNumber: regNumber },
+    { semster: semster },
+    { new: true }
+  );
 
+  try {
+    res.send(usersData);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 app.listen(8080, (e) => {
   if (!e) console.log("server running on port 8080");
   else console.error(e);
