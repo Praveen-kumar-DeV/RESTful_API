@@ -38,3 +38,14 @@ exports.updateRegister = async (req, res) => {
     res.status(500).send(error);
   }
 };
+
+exports.deleteRegister = async (req, res) => {
+  const regNumber = req.params.regNumber;
+  const userData = await userModel.findOneAndRemove({ regNumber: regNumber });
+  console.log(userData);
+  try {
+    res.status(200).send(userData);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
