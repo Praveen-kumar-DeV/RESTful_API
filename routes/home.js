@@ -5,7 +5,7 @@ const {
   conformRegister,
   updateRegister,
   deleteRegister,
-} = require("../controllers/crud");
+} = require("../controllers/crudOperations");
 
 router.route("/register").post(register);
 router.route("/people").get(conformRegister);
