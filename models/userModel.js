@@ -20,6 +20,7 @@ const UserSchema = new mongoose.Schema({
   regNumber: {
     type: Number,
     required: true,
+    unique: true,
   },
 });
 

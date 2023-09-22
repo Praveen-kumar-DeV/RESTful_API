@@ -1,10 +1,12 @@
-const userModel = require("../models/model");
+const userModel = require("../models/userModel");
 
 exports.register = async (req, res) => {
   const user = new userModel(req.body);
   try {
-    await user.save();
-    res.send(user);
+    await user.save().catch((error) => {
+      if (error.code == 11000)
+        res.status(404).send({ message: "Duplicate Data" });
+    });
   } catch (error) {
     res.status(500).send(error);
   }
