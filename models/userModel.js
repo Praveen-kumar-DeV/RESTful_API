@@ -1,28 +1,6 @@
 const mongoose = require("mongoose");
-
-const UserSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  age: {
-    type: Number,
-    default: 0,
-  },
-  semster: {
-    type: Number,
-    default: 0,
-  },
-  branch: {
-    type: String,
-    required: true,
-  },
-  regNumber: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
-});
+const student = require("../dataModels/student");
+const UserSchema = new mongoose.Schema(student);
 
 const User = mongoose.model("User", UserSchema);
 

@@ -2,6 +2,7 @@ const userModel = require("../models/userModel");
 
 exports.register = async (req, res) => {
   const user = new userModel(req.body);
+  console.log(user);
   try {
     await user.save().catch((error) => {
       if (error.code == 11000)
