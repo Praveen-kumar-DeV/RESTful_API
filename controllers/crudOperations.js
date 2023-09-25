@@ -1,7 +1,7 @@
-const userModel = require("../models/userModel");
+const { User, Mark } = require("../models/userModel");
 
 exports.register = async (req, res) => {
-  const user = new userModel(req.body);
+  const user = new User(req.body);
   console.log(user);
   try {
     await user.save().catch((error) => {
@@ -13,8 +13,22 @@ exports.register = async (req, res) => {
   }
 };
 
+exports.marks = async (req, res) => {
+  const marks = new Mark(req.body);
+  console.log(marks);
+  try {
+    await marks.save().catch((error) => {
+      if (error.code == 11000)
+        res.status(404).send({ message: "Duplicate Data" });
+    });
+
+    res.status(200).send(marks);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 exports.conformRegister = async (req, res) => {
-  const user = await userModel.find({});
+  const user = await User.find({});
 
   try {
     res.status(200).send(user);
@@ -28,7 +42,7 @@ exports.updateRegister = async (req, res) => {
   console.log(req.params.name);
   const semster = req.body;
   console.log(semster.semster);
-  const userData = await userModel.findOneAndUpdate(
+  const userData = await User.findOneAndUpdate(
     { name: name },
     { semster: semster.semster },
     { new: true }
@@ -44,7 +58,7 @@ exports.updateRegister = async (req, res) => {
 
 exports.deleteRegister = async (req, res) => {
   const regNumber = req.params.regNumber;
-  const userData = await userModel.findOneAndRemove({ regNumber: regNumber });
+  const userData = await User.findOneAndRemove({ regNumber: regNumber });
   console.log(userData);
   try {
     res.status(200).send(userData);

@@ -1,9 +1,23 @@
 const academicData = {
   course: {
-    courseCode: String,
-    courseName: String,
-    marksObtained: Number,
-    marksTotal: Number,
+    courseCode: {
+      type: String,
+      required: true,
+      default: "NA",
+    },
+    courseName: {
+      type: String,
+      required: true,
+      default: "NA",
+    },
+    marksObtained: {
+      type: Number,
+      default: 0,
+    },
+    marksTotal: {
+      type: Number,
+      default: 0,
+    },
   },
 };
 
